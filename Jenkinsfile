@@ -1,6 +1,12 @@
 pipeline {
 
      agent {
+        
+        parameters {
+
+            booleanParam(name: "RUN_FRONTEND_TESTS", defaultValue: true)
+
+        }
 
         node {
 
@@ -27,6 +33,8 @@ pipeline {
                 }
 
                 stage('Frontend Tests') {
+
+                    when { expression { params.RUN_FRONTEND_TESTS } }
 
                     steps {
 
